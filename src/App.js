@@ -88,7 +88,7 @@ function App() {
 
   console.log(data);
 
-  return data ? (
+  return (
     <div className="App container">
       <header>
         <div className="selector">
@@ -103,40 +103,44 @@ function App() {
         </div>
         <h1>מערכת שעות - מסלול דמוקרטי בנופית</h1>
       </header>
-      <table border='0' cellPadding='0' cellSpacing='0'>
-        <thead>
-          <tr className="days">
-            <th></th>
-            {data.days.map(day => (
-              <th key={day || 'empty'}>{day}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.hours.map(hour => (
-            <tr key={hour || 'empty'}>
-              <td className="time">{hour}</td>
+      {data ? (
+        <table border='0' cellPadding='0' cellSpacing='0'>
+          <thead>
+            <tr className="days">
+              <th></th>
               {data.days.map(day => (
-                <td key={day}>
-                  {data.schedule[day][hour].map((name, i) => {
-                    const lesson = data.lessons[name];
-                    if (!lesson) return null;
-                    const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
-                    return parseInt(who) === 0 || inWho ? (
-                      <div key={name + i} className={'lesson color-' + (Object.keys(data.lessons).indexOf(name) % 6)} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
-                        {lesson.link ? (
-                          <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
-                        ) : name }
-                      </div>
-                    ) : null
-                  })}
-                </td>
+                <th key={day || 'empty'}>{day}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <p>
+          </thead>
+          <tbody>
+            {data.hours.map(hour => (
+              <tr key={hour || 'empty'}>
+                <td className="time">{hour}</td>
+                {data.days.map(day => (
+                  <td key={day}>
+                    {data.schedule[day][hour].map((name, i) => {
+                      const lesson = data.lessons[name];
+                      if (!lesson) return null;
+                      const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
+                      return parseInt(who) === 0 || inWho ? (
+                        <div key={name + i} className={'lesson color-' + (Object.keys(data.lessons).indexOf(name) % 6)} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
+                          {lesson.link ? (
+                            <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
+                          ) : name }
+                        </div>
+                      ) : null
+                    })}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="logo-wrp"><img src={logo} className="App-logo" alt="logo" /></div>
+      )}
+      <p className="links">
         <span>לינקים: </span>
         <span>
           <a href="https://drive.google.com/drive/folders/1q_nmaCrEJy1qW_ypgAT6GVgyVyTw1sk1?usp=sharing">ספריית דרייב</a>
@@ -155,8 +159,6 @@ function App() {
         </span>
       </p>
     </div>
-  ) : (
-    <img src={logo} className="App-logo" alt="logo" />
   );
 }
 

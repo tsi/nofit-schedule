@@ -17,6 +17,12 @@ body {
   text-align: center;
 }
 
+.logo-wrp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -129,6 +135,11 @@ td.time {
 
 .lesson {
   padding: 0.8em;
+}
+
+.links {
+  margin-top: 1em;
+  padding-top: 1em;
 }
 
 /* Add this attribute to the element that needs a tooltip */
