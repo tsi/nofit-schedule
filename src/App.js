@@ -21,8 +21,7 @@ const getData = (setData) => {
     window.gapi.client.sheets.spreadsheets.values
       .batchGet({
         spreadsheetId: config.spreadsheetId,
-        // majorDimension: 'COLUMNS',
-        ranges: ["'מערכת'!B2:H", "'תכנים'!A1:E"]
+        ranges: ["'מערכת'!B2:H", "'תכנים'!A1:G"]
       })
       .then(
         response => {
@@ -51,12 +50,13 @@ const parseData = (data) => {
       const time = rowList[rowIdx][0];
       const name = rowList[rowIdx][dayIdx];
       if (name && !lessons[name]) {
-        const who = data[1].values.find(l => l[0] === name);
-        if (who) {
-          who.shift();
+        const lesson = data[1].values.find(l => l[0] === name);
+        if (lesson) {
           lessons[name] = {
             label: name,
-            who: who.map((val, i) => val === 'TRUE' ? i + 1 : false)
+            who: lesson.slice(1, 5).map((val, i) => val === 'TRUE' ? i + 1 : false),
+            link: lesson[5],
+            tooltip: lesson[6]
           }
         }
       }
@@ -88,9 +88,9 @@ function App() {
 
   console.log(data);
 
-  return (
+  return data ? (
     <div className="App container">
-      {data && (
+      <header>
         <div className="selector">
           <span>שיעורים מתאימים ל:</span>
           <select value={who} onChange={handleChange}>
@@ -101,42 +101,62 @@ function App() {
             <option value="4" >ד</option>
           </select>
         </div>
-      )}
-      {data ? (
-        <table border='0' cellPadding='0' cellSpacing='0'>
-          <thead>
-            <tr className="days">
-              <th></th>
+        <h1>מערכת שעות - מסלול דמוקרטי בנופית</h1>
+      </header>
+      <table border='0' cellPadding='0' cellSpacing='0'>
+        <thead>
+          <tr className="days">
+            <th></th>
+            {data.days.map(day => (
+              <th key={day || 'empty'}>{day}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.hours.map(hour => (
+            <tr key={hour || 'empty'}>
+              <td className="time">{hour}</td>
               {data.days.map(day => (
-                <th key={day}>{day}</th>
+                <td key={day}>
+                  {data.schedule[day][hour].map((name, i) => {
+                    const lesson = data.lessons[name];
+                    if (!lesson) return null;
+                    const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
+                    return parseInt(who) === 0 || inWho ? (
+                      <div key={name + i} className={'lesson color-' + (Object.keys(data.lessons).indexOf(name) % 6)} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
+                        {lesson.link ? (
+                          <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
+                        ) : name }
+                      </div>
+                    ) : null
+                  })}
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {data.hours.map(hour => (
-              <tr key={hour}>
-                <td className="time">{hour}</td>
-                {data.days.map(day => (
-                  <td key={day}>
-                    {data.schedule[day][hour].map(lesson => {
-                      const inWho = data.lessons[lesson] && data.lessons[lesson].who.includes(parseInt(who)) ? true : false;
-                      return parseInt(who) === 0 || inWho ? (
-                        <div key={lesson} className={'lesson color-' + (Object.keys(data.lessons).indexOf(lesson) % 6)}>
-                          {/* {console.log(data.lessons[lesson])} */}
-                          {lesson}
-                        </div>
-                      ) : null
-                    })}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-          <img src={logo} className="App-logo" alt="logo" />
-        )}
+          ))}
+        </tbody>
+      </table>
+      <p>
+        <span>לינקים: </span>
+        <span>
+          <a href="https://drive.google.com/drive/folders/1q_nmaCrEJy1qW_ypgAT6GVgyVyTw1sk1?usp=sharing">ספריית דרייב</a>
+        </span>
+        <span>&nbsp;| </span>
+        <span>
+          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום חלי</a>
+        </span>
+        <span>&nbsp;| </span>
+        <span>
+          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום עירית</a>
+        </span>
+        <span>&nbsp;| </span>
+        <span>
+          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום שלהבת</a>
+        </span>
+      </p>
     </div>
+  ) : (
+    <img src={logo} className="App-logo" alt="logo" />
   );
 }
 

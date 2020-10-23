@@ -1,5 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
 
+body {
+  /* background: #e74c3c; */
+  font-family: 'Open Sans', Helvetica;
+  direction: rtl;
+}
+
+.container {
+  max-width: 98%;
+  width: 1400px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+
 .App {
   text-align: center;
 }
@@ -24,30 +37,24 @@
   }
 }
 
-/*  */
-
-body {
-  /* background: #e74c3c; */
-  font-family: 'Open Sans', Helvetica;
-  padding: 20px;
-  direction: rtl;
+h1 {
+  color: #476a8d;
+  margin-bottom: 10px;
 }
 
-.container {
-  width: 100%;
-  min-width: 1200px;
-  max-width: 1400px;
-  margin: 0 auto;
+a {
+  color: inherit;
 }
 
 .selector {
   font-size: 14px;
-  text-align: left;
-  margin-bottom: 1em;
+  text-align: right;
+  margin: 1em;
 }
 select {
   font-size: 18px;
   min-width: 100px;
+  padding: 0.3em;
   border: 1px solid #ccc;
   margin-right: 10px;
 }
@@ -86,8 +93,9 @@ select {
 }
 
 table {
-  color: #efefef;
+  color: #fff;
   width: 100%;
+  border-spacing: 3px;
 }
 table td {
   /* border-bottom: 1px solid #ccc; */
@@ -107,17 +115,20 @@ table th, table td {
 .days th, td.time {
   background: #34495e;
   text-transform: uppercase;
-  font-size: 0.6em;
+  font-size: 0.7em;
   text-align: center;
-  padding: 1em;
+  padding: 0.8em;
 }
 
 td.time {
   width: 2em !important;
+  font-weight: bold;
+  vertical-align: middle;
+  font-size: 0.8em;
 }
 
 .lesson {
-  padding: 0.5em;
+  padding: 0.8em;
 }
 
 /* Add this attribute to the element that needs a tooltip */
