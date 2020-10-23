@@ -35,6 +35,7 @@ body {
 
 .container {
   width: 100%;
+  min-width: 1200px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -111,8 +112,8 @@ table th, table td {
   padding: 1em;
 }
 
-.time {
-  width: 3em !important;
+td.time {
+  width: 2em !important;
 }
 
 .lesson {
