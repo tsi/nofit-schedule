@@ -52,7 +52,6 @@ const parseData = (data) => {
       const name = rowList[rowIdx][dayIdx];
       if (name && !lessons[name]) {
         const who = data[1].values.find(l => l[0] === name);
-        console.log(who);
         if (who) {
           who.shift();
           lessons[name] = {
@@ -88,7 +87,6 @@ function App() {
   }
 
   console.log(data);
-  console.log(who);
 
   return (
     <div className="App container">
