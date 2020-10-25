@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import config from './config';
 import logo from './logo.svg';
+import Links from './Links';
 import './App.css';
 
 const initGapiClient = (setData) => {
@@ -90,76 +91,63 @@ function App() {
   console.log(data);
 
   return (
-    <div className="App container">
+    <div className="App">
       <header>
-        <div className="selector">
-          <span>שיעורים מתאימים ל:</span>
-          <select value={who} onChange={handleChange}>
-            <option value="0" >כולם</option>
-            <option value="1" >א</option>
-            <option value="2" >ב</option>
-            <option value="3" >ג</option>
-            <option value="4" >ד</option>
-          </select>
+        <div className="container">
+          <div className="selector">
+            <span>שיעורים מתאימים ל:</span>
+            <select value={who} onChange={handleChange}>
+              <option value="0" >כולם</option>
+              <option value="1" >א</option>
+              <option value="2" >ב</option>
+              <option value="3" >ג</option>
+              <option value="4" >ד</option>
+            </select>
+          </div>
+          <Links />
         </div>
-        <h1>מערכת שעות - מסלול דמוקרטי בנופית</h1>
       </header>
-      {data ? (
-        <table border='0' cellPadding='0' cellSpacing='0'>
-          <thead>
-            <tr className="days">
-              <th></th>
-              {data.days.map(day => (
-                <th key={day || 'empty'}>{day}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.hours.map(hour => (
-              <tr key={hour || 'empty'}>
-                <td className="time">{hour}</td>
+      <h1>מערכת שעות - מסלול דמוקרטי בנופית</h1>
+      <div className="container">
+        {data ? (
+          <table border='0' cellPadding='0' cellSpacing='0'>
+            <thead>
+              <tr className="days">
+                <th></th>
                 {data.days.map(day => (
-                  <td key={day}>
-                    {data.schedule[day][hour].map((name, i) => {
-                      const lesson = data.lessons[name];
-                      if (!lesson) return null;
-                      const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
-                      const color = lesson.color || (Object.keys(data.lessons).indexOf(name) % 15) + 1
-                      return parseInt(who) === 0 || inWho ? (
-                        <div key={name + i} className={'lesson color-' + color} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
-                          {lesson.link ? (
-                            <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
-                          ) : name }
-                        </div>
-                      ) : null
-                    })}
-                  </td>
+                  <th key={day || 'empty'}>{day}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <div className="logo-wrp"><img src={logo} className="App-logo" alt="logo" /></div>
-      )}
-      <p className="links">
-        <span>לינקים: </span>
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/drive/folders/1q_nmaCrEJy1qW_ypgAT6GVgyVyTw1sk1?usp=sharing">ספריית דרייב</a>
-        </span>
-        <span>&nbsp;| </span>
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href="https://edu-il.zoom.us/j/4098147467">זום חלי</a>
-        </span>
-        <span>&nbsp;| </span>
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href="https://edu-il.zoom.us/j/9632529329">זום עירית</a>
-        </span>
-        <span>&nbsp;| </span>
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href="https://us04web.zoom.us/j/78603297544?pwd=M2RGL2svUEZ0T2Fkb1Z5Ky96cGFtUT09">זום שלהבת</a>
-        </span>
-      </p>
+            </thead>
+            <tbody>
+              {data.hours.map(hour => (
+                <tr key={hour || 'empty'}>
+                  <td className="time">{hour}</td>
+                  {data.days.map(day => (
+                    <td key={day}>
+                      {data.schedule[day][hour].map((name, i) => {
+                        const lesson = data.lessons[name];
+                        if (!lesson) return null;
+                        const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
+                        const color = lesson.color || (Object.keys(data.lessons).indexOf(name) % 15) + 1
+                        return parseInt(who) === 0 || inWho ? (
+                          <div key={name + i} className={'lesson color-' + color} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
+                            {lesson.link ? (
+                              <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
+                            ) : name }
+                          </div>
+                        ) : null
+                      })}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="logo-wrp"><img src={logo} className="App-logo" alt="logo" /></div>
+        )}
+      </div>
     </div>
   );
 }
