@@ -65,28 +65,22 @@ select {
   margin-right: 10px;
 }
 
-.color-0 {
-  background: #f39c12;
-}
-.color-1 {
-  background: #3498db;
-}
+.color-1 { background:  #e53935; }
+.color-2 { background:  #d81b60; }
+.color-3 { background:  #8e24aa; }
+.color-4 { background:  #3949ab; }
+.color-5 { background:  #1e88e5; }
+.color-6 { background:  #039be5; }
+.color-7 { background:  #00acc1; }
+.color-8 { background:  #00897b; }
+.color-9 { background:  #43a047; }
+.color-10 { background: #7cb342; }
+.color-11 { background: #c0ca33; }
+.color-12 { background: #fdd835; }
+.color-13 { background: #ffb300; }
+.color-14 { background: #fb8c00; }
+.color-15 { background: #f4511e; }
 
-.color-2 {
-  background: #9b59b6;
-}
-
-.color-3 {
-  background: #e91e63;
-}
-
-.color-4 {
-  background: #2ecc71;
-}
-
-.color-5 {
-  background: #e74c3c;
-}
 
 *, *:before, *:after {
   margin: 0;

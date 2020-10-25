@@ -21,7 +21,7 @@ const getData = (setData) => {
     window.gapi.client.sheets.spreadsheets.values
       .batchGet({
         spreadsheetId: config.spreadsheetId,
-        ranges: ["'מערכת'!B2:H", "'תכנים'!A1:G"]
+        ranges: ["'מערכת'!B2:H", "'תכנים'!A1:H"]
       })
       .then(
         response => {
@@ -56,7 +56,8 @@ const parseData = (data) => {
             label: name,
             who: lesson.slice(1, 5).map((val, i) => val === 'TRUE' ? i + 1 : false),
             link: lesson[5],
-            tooltip: lesson[6]
+            tooltip: lesson[6],
+            color: lesson[7]
           }
         }
       }
@@ -123,8 +124,9 @@ function App() {
                       const lesson = data.lessons[name];
                       if (!lesson) return null;
                       const inWho = lesson && lesson.who.includes(parseInt(who)) ? true : false;
+                      const color = lesson.color || (Object.keys(data.lessons).indexOf(name) % 15) + 1
                       return parseInt(who) === 0 || inWho ? (
-                        <div key={name + i} className={'lesson color-' + (Object.keys(data.lessons).indexOf(name) % 6)} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
+                        <div key={name + i} className={'lesson color-' + color} data-tooltip={lesson.tooltip ? lesson.tooltip : null}>
                           {lesson.link ? (
                             <a href={lesson.link} target="_blank" rel="noopener noreferrer">{name}</a>
                           ) : name }
