@@ -147,15 +147,15 @@ function App() {
         </span>
         <span>&nbsp;| </span>
         <span>
-          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום חלי</a>
+          <a href="https://edu-il.zoom.us/j/4098147467">זום חלי</a>
         </span>
         <span>&nbsp;| </span>
         <span>
-          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום עירית</a>
+          <a href="https://edu-il.zoom.us/j/9632529329">זום עירית</a>
         </span>
         <span>&nbsp;| </span>
         <span>
-          <a href="https://edu-il.zoom.us/j/4098147467%23success">זום שלהבת</a>
+          <a href="https://us04web.zoom.us/j/78603297544?pwd=M2RGL2svUEZ0T2Fkb1Z5Ky96cGFtUT09">זום שלהבת</a>
         </span>
       </p>
     </div>

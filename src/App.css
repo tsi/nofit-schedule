@@ -138,8 +138,8 @@ td.time {
 }
 
 .links {
-  margin-top: 1em;
-  padding-top: 1em;
+  margin: 2em auto;
+  font-size: 1.5em;
 }
 
 /* Add this attribute to the element that needs a tooltip */
