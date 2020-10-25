@@ -1,9 +1,9 @@
 body {
+  direction: rtl;
+  margin: 0;
+  color: #fff;
   background: url(./bg.jpg) #86afbe;
   background-size: cover;
-  color: #fff;
-  margin: 0;
-  direction: rtl;
   font-family: 'Open Sans', Helvetica, 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
