@@ -2,7 +2,7 @@ body {
   direction: rtl;
   margin: 0;
   color: #fff;
-  background: url(./bg.jpg) #86afbe;
+  background: linear-gradient(to left, #f1ffdf, #c4c59b);
   background-size: cover;
   font-family: 'Open Sans', Helvetica, 'Helvetica Neue',
     sans-serif;
