@@ -16,18 +16,6 @@ html, body {
   min-height: 100%;
 }
 
-body {
-  background: url(/bg.jpg) #86afbe;
-  background-size: cover;
-  color: #fff;
-  margin: 0;
-  direction: rtl;
-  font-family: 'Open Sans', Helvetica, 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 a {
   color: inherit;
 }
