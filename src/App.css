@@ -81,6 +81,7 @@ h1 {
 .color-15 { background: #f4511e; }
 
 table {
+  font-size: 18px;
   color: #fff;
   background: #ffffff88;
   width: 100%;
@@ -108,7 +109,7 @@ table th, table td {
   text-transform: uppercase;
   font-size: 0.7em;
   text-align: center;
-  padding: 0.8em;
+  padding: 0.7em;
 }
 
 td.time {
@@ -119,7 +120,7 @@ td.time {
 }
 
 .lesson {
-  padding: 0.8em;
+  padding: 0.6em;
 }
 
 /* Add this attribute to the element that needs a tooltip */
