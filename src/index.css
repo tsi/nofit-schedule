@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+@import url(https://fonts.googleapis.com/css?family=Secular+One:300,400);
 
 *, *:before, *:after {
   margin: 0;
@@ -14,6 +14,20 @@ html, body {
   width: 100%;
   min-width: 1200px;
   min-height: 100%;
+}
+
+body {
+  direction: rtl;
+  margin: 0;
+  color: #fff;
+  background-color: #fff;
+  background-image:
+  linear-gradient(270deg, transparent 129px, #abced4 129px, #abced4 131px, transparent 131px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 2.5em;
+  font-family: 'Secular One', Helvetica, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
