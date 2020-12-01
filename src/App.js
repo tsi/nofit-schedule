@@ -17,7 +17,7 @@ function App() {
     localStorage.setItem('who', e.target.value);
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="App">

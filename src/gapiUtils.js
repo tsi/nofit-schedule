@@ -1,11 +1,10 @@
-import config from './config';
 
 export const initGapiClient = (setData) => {
   // Initialize the JavaScript client library.
   window.gapi.client
     .init({
-      apiKey: config.apiKey,
-      discoveryDocs: config.discoveryDocs,
+      apiKey: process.env.REACT_APP_API_KEY,
+      discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
     })
     .then(() => {
       // Initialize and make the API request.
@@ -17,7 +16,7 @@ export const getData = (setData) => {
   window.gapi.client.load("sheets", "v4", () => {
     window.gapi.client.sheets.spreadsheets.values
       .batchGet({
-        spreadsheetId: config.spreadsheetId,
+        spreadsheetId: process.env.REACT_APP_SPREADSHEET_ID,
         ranges: ["'מערכת'!B2:H", "'תכנים'!A1:H"]
       })
       .then(
@@ -33,7 +32,7 @@ export const getData = (setData) => {
 }
 
 export const parseData = (data) => {
-  console.log(data);
+  // console.log(data);
   const rowList = data[0].values;
   const days = data[0].values[0];
   const daysArr = [];
