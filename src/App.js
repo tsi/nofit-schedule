@@ -34,7 +34,9 @@ function App() {
               <option value="5" >ה</option>
             </select>
           </div>
-          <Links />
+          {data && data.links && (
+            <Links links={data.links} />
+          )}
         </div>
       </header>
       <h1>מערכת שעות - מסלול דמוקרטי בנופית</h1>
