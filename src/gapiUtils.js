@@ -39,6 +39,7 @@ export const parseData = (data) => {
   const hoursList = [];
   const dayList = [];
   const lessons = {};
+  const gradeCount = 5; // change this if adding grade column
   for (let dayIdx = 1; dayIdx < days.length; dayIdx++) {
     const day = days[dayIdx];
     dayList.push(day);
@@ -50,10 +51,10 @@ export const parseData = (data) => {
         if (lesson) {
           lessons[name] = {
             label: name,
-            who: lesson.slice(1, 5).map((val, i) => val === 'TRUE' ? i + 1 : false),
-            link: lesson[5],
-            tooltip: lesson[6],
-            color: lesson[7]
+            who: lesson.slice(1, gradeCount+1).map((val, i) => val === 'TRUE' ? i + 1 : false),
+            link: lesson[gradeCount+1],
+            tooltip: lesson[gradeCount+2],
+            color: lesson[gradeCount+3]
           }
         }
       }
