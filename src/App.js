@@ -31,6 +31,7 @@ function App() {
               <option value="2" >ב</option>
               <option value="3" >ג</option>
               <option value="4" >ד</option>
+              <option value="5" >ה</option>
             </select>
           </div>
           <Links />
