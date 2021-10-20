@@ -17,7 +17,7 @@ export const getData = (setData) => {
     window.gapi.client.sheets.spreadsheets.values
       .batchGet({
         spreadsheetId: process.env.REACT_APP_SPREADSHEET_ID,
-        ranges: ["'מערכת'!B2:H", "'תכנים'!A1:H", "'לינקים'!A2:H"]
+        ranges: ["'מערכת'!B2:Z", "'תכנים'!A1:Z", "'לינקים'!A2:Z"]
       })
       .then(
         response => {
