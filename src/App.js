@@ -17,8 +17,6 @@ function App() {
     localStorage.setItem('who', e.target.value);
   }
 
-  // console.log(data);
-
   return (
     <div className="App">
       <header>
@@ -32,6 +30,7 @@ function App() {
               <option value="3" >ג</option>
               <option value="4" >ד</option>
               <option value="5" >ה</option>
+              <option value="6" >ו</option>
             </select>
           </div>
           {data && data.links && (

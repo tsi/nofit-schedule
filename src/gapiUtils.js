@@ -39,7 +39,7 @@ export const parseData = (data) => {
   const hoursList = [];
   const dayList = [];
   const lessons = {};
-  const gradeCount = 5; // change this if adding grade column
+  const gradeCount = 6; // change this if adding grade column
   for (let dayIdx = 1; dayIdx < days.length; dayIdx++) {
     const day = days[dayIdx];
     dayList.push(day);
